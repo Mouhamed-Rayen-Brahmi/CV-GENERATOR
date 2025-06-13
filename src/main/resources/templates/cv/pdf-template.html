@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>CV PDF</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+        
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .cv-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c3e50;
+            display: table;
+            width: 100%;
+        }
+        
+        .header-content {
+            display: table-cell;
+            vertical-align: top;
+            width: 70%;
+        }
+        
+        .header-image {
+            display: table-cell;
+            vertical-align: top;
+            width: 30%;
+            text-align: right;
+        }
+        
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+        
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0 0 5px 0;
+        }
+        
+        .title {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin: 0 0 15px 0;
+            font-style: italic;
+        }
+        
+        .contact-info {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .contact-info div {
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+        
+        .item-header {
+            margin-bottom: 5px;
+        }
+        
+        .item-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+        
+        .item-company {
+            font-size: 14px;
+            color: #3498db;
+            margin-bottom: 3px;
+        }
+        
+        .item-date {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .item-location {
+            font-size: 12px;
+            color: #95a5a6;
+            margin-bottom: 8px;
+        }
+        
+        .item-description {
+            font-size: 14px;
+            color: #555;
+            text-align: justify;
+        }
+        
+        .skills-container {
+            display: block;
+        }
+        
+        .skill-item {
+            color: black;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-block;
+            margin: 2px;
+        }
+        
+        .summary {
+            font-size: 14px;
+            color: #555;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+        
+        .no-image .header-content {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="cv-header" th:classappend="${profileImageBase64 == null} ? 'no-image' : ''">
+        <div class="header-content">
+            <h1 class="name">
+                <span th:text="${cv.firstName}">First Name</span> 
+                <span th:text="${cv.lastName}">Last Name</span>
+            </h1>
+            <div class="title" th:text="${cv.title}">Job Title</div>
+            
+            <div class="contact-info">
+                <div>
+                    <strong>Email:</strong> <span th:text="${cv.email}">email@example.com</span>
+                </div>
+                <div th:if="${cv.phoneNumber}">
+                    <strong>Phone:</strong> <span th:text="${cv.phoneNumber}">Phone Number</span>
+                </div>
+                <div th:if="${cv.address}">
+                    <strong>Address:</strong> <span th:text="${cv.address}">Address</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-image" th:if="${profileImageBase64 != null}">
+            <img th:src="${profileImageBase64}" 
+                 alt="Profile Picture" 
+                 class="profile-picture"/>
+        </div>
+    </div>
+
+    <!-- Professional Summary -->
+    <div class="section" th:if="${cv.summary}">
+        <h2 class="section-title">Professional Summary</h2>
+        <div class="summary" th:text="${cv.summary}">
+            Professional summary goes here...
+        </div>
+    </div>
+
+    <!-- Work Experience -->
+    <div class="section" th:if="${!#lists.isEmpty(cv.experiences)}">
+        <h2 class="section-title">Work Experience</h2>
+        <div th:each="exp : ${cv.experiences}" class="experience-item">
+            <div class="item-header">
+                <div class="item-title" th:text="${exp.position}">Position</div>
+                <div class="item-company" th:text="${exp.company}">Company</div>
+                <div class="item-date">
+                    <span th:text="${#temporals.format(exp.startDate, 'MMM yyyy')}" th:if="${exp.startDate}">Start Date</span>
+                    <span th:if="${!exp.currentJob and exp.endDate}"> - </span>
+                    <span th:text="${#temporals.format(exp.endDate, 'MMM yyyy')}" th:if="${!exp.currentJob and exp.endDate}">End Date</span>
+                    <span th:if="${exp.currentJob}"> - Present</span>
+                </div>
+                <div class="item-location" th:if="${exp.location}" th:text="${exp.location}">Location</div>
+            </div>
+            <div class="item-description" th:if="${exp.description}" th:text="${exp.description}">
+                Job description and achievements...
+            </div>
+        </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section" th:if="${!#lists.isEmpty(cv.educations)}">
+        <h2 class="section-title">Education</h2>
+        <div th:each="edu : ${cv.educations}" class="education-item">
+            <div class="item-header">
+                <div class="item-title" th:text="${edu.degree}">Degree</div>
+                <div class="item-company" th:text="${edu.institution}">Institution</div>
+                <div class="item-date">
+                    <span th:text="${#temporals.format(edu.startDate, 'MMM yyyy')}" th:if="${edu.startDate}">Start Date</span>
+                    <span th:if="${edu.endDate}"> - </span>
+                    <span th:text="${#temporals.format(edu.endDate, 'MMM yyyy')}" th:if="${edu.endDate}">End Date</span>
+                </div>
+            </div>
+            <div class="item-description" th:if="${edu.description}" th:text="${edu.description}">
+                Education description...
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section" th:if="${!#lists.isEmpty(cv.skills)}">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+            <div th:each="skill : ${cv.skills}" 
+                 class="skill-item"
+                 th:classappend="${'skill-' + #strings.toLowerCase(skill.proficiencyLevel ?: 'beginner')}">
+                <span th:text="${skill.name}">Skill</span><span th:if="${skill.proficiencyLevel != null and skill.proficiencyLevel != ''}" th:text="${' (' + skill.proficiencyLevel + ')'}"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

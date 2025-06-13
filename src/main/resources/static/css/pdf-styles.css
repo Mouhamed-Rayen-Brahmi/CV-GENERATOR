@@ -1,0 +1,51 @@
+/* Basic styles for PDF */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    line-height: 1.4;
+}
+.cv-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #333;
+}
+.cv-name {
+    font-size: 24pt;
+    margin-bottom: 5px;
+}
+.cv-contact {
+    font-size: 11pt;
+}
+.cv-section {
+    margin-bottom: 20px;
+}
+.cv-section-title {
+    font-size: 16pt;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.cv-item {
+    margin-bottom: 15px;
+}
+.cv-item-title {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+.cv-item-subtitle {
+    font-style: italic;
+    margin-bottom: 3px;
+}
+.cv-item-date {
+    font-size: 10pt;
+    color: #666;
+    margin-bottom: 5px;
+}
+.cv-item-description {
+    font-size: 11pt;
+}

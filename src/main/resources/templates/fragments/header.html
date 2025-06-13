@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<header th:fragment="header" class="header">
+    <div class="container">
+        <div class="logo">
+            <a sec:authorize="isAuthenticated()" href="/dashboard"><h1>CV Generator</h1></a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <!-- Menu for authenticated users -->
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/dashboard}">Dashboard</a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/cv/create}">Create CV</a>
+                </li>
+                <!-- Logout option -->
+                <li sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post" style="margin:0;">
+                        <input type="hidden" th:name="${_csrf != null ? _csrf.parameterName : ''}"
+                               th:value="${_csrf != null ? _csrf.token : ''}"/>
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                </li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+</body>
+</html>

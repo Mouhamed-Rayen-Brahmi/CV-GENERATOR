@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CV Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/landing.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-bs-theme="light">
+<header th:replace="~{fragments/header :: header}"></header>
+<main class="main-content">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Welcome back, <span th:text="${user.firstName + ' ' + user.lastName}">User</span>!</h2>
+                <p class="text-muted">Manage your CVs and create new ones.</p>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-plus text-primary"></i> Create New CV</h5>
+                        <p class="card-text">Start building a new professional CV.</p>
+                        <a href="/cv/create" class="btn btn-primary">Create CV</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-chart-bar text-primary"></i> CV Statistics</h5>
+                        <p class="card-text">Total CVs: <span th:text="${#lists.size(cvList)}">0</span></p>
+                        <p class="card-text mb-0">Last updated:
+                            <span th:if="${recentCv}" th:text="${#temporals.format(recentCv.updatedAt, 'MMM dd, yyyy')}">Never</span>
+                            <span th:unless="${recentCv}">Never</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent CV -->
+        <div class="row mb-4" th:if="${recentCv}">
+            <div class="col-md-12">
+                <h4 class="section-header"><i class="fas fa-history"></i> Most Recent CV</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h5 class="card-title" th:text="${recentCv.title}">CV Title</h5>
+                                <p class="card-text">
+                                    <span th:text="${recentCv.firstName + ' ' + recentCv.lastName}">Name</span><br>
+                                    <small class="text-muted">Last updated: <span th:text="${#temporals.format(recentCv.updatedAt, 'MMM dd, yyyy HH:mm')}">Date</span></small>
+                                </p>
+                            </div>
+                            <div class="btn-group">
+                                <a th:href="@{/cv/{id}(id=${recentCv.id})}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
+                                <a th:href="@{/cv/{id}/edit(id=${recentCv.id})}" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a th:href="@{/cv/{id}/download(id=${recentCv.id})}" class="btn btn-outline-success btn-sm">
+                                    <i class="fas fa-download"></i> PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- All CVs -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="section-header"><i class="fas fa-file-alt"></i> Your CVs</h4>
+                    <a href="/cv/create" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> New CV
+                    </a>
+                </div>
+
+                <div th:if="${#lists.isEmpty(cvList)}" class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h5>No CVs created yet</h5>
+                    <p>Create your first CV to get started.</p>
+                    <a href="/cv/create" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Create Your First CV
+                    </a>
+                </div>
+
+                <div class="cv-grid" th:unless="${#lists.isEmpty(cvList)}">
+                    <div class="cv-card" th:each="cv : ${cvList}">
+                        <div class="cv-card-header">
+                            <h6 class="card-title" th:text="${cv.title}">CV Title</h6>
+                        </div>
+                        <div class="cv-card-body">
+                            <p>
+                                <span th:text="${cv.firstName + ' ' + cv.lastName}">Name</span><br>
+                                <small class="text-muted">
+                                    Created: <span th:text="${#temporals.format(cv.createdAt, 'MMM dd, yyyy')}">Date</span><br>
+                                    Updated: <span th:text="${#temporals.format(cv.updatedAt, 'MMM dd, yyyy')}">Date</span>
+                                </small>
+                            </p>
+                        </div>
+                        <div class="cv-card-footer">
+                            <div class="btn-group w-100">
+                                <a th:href="@{/cv/{id}(id=${cv.id})}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
+                                <a th:href="@{/cv/{id}/edit(id=${cv.id})}" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a th:href="@{/cv/{id}/download(id=${cv.id})}" class="btn btn-outline-success btn-sm">
+                                    <i class="fas fa-download"></i> PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/landing.js}"></script>
+<script>
+    // Initialize theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check for saved theme preference or use default
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-bs-theme', savedTheme);
+        document.body.setAttribute('data-theme', savedTheme);
+        
+        // Update moon/sun icon
+        const themeIcon = document.querySelector('#theme-toggle i');
+        if (themeIcon) {
+            themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    });
+</script>
+</body>
+</html>

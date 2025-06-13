@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification - CV Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .title {
+            font-size: 24px;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+        .content {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .verification-code {
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 8px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .button {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 40px;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 20px;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">CV Generator</div>
+            <h1 class="title">Verify Your Email Address</h1>
+        </div>
+        
+        <div class="content">
+            <p>Hello <strong th:text="${firstName}">User</strong>,</p>
+            
+            <p>Thank you for registering with CV Generator! To complete your registration and start creating professional CVs, please verify your email address.</p>
+            
+            <p>Use the verification code below:</p>
+            
+            <div class="verification-code" th:text="${verificationCode}">
+                ABC123
+            </div>
+            
+            <p>Or click the button below to verify automatically:</p>
+            
+            <div style="text-align: center;">
+                <a th:href="${verificationUrl}" class="button">Verify Email Address</a>
+            </div>
+            
+            <div class="warning">
+                <strong>Important:</strong> This verification code will expire in 1 hour. If you didn't create an account with CV Generator, please ignore this email.
+            </div>
+            
+            <p>Once verified, you'll be able to:</p>
+            <ul>
+                <li>Create and customize professional CVs</li>
+                <li>Download your CVs as PDF files</li>
+                <li>Save and edit multiple CV versions</li>
+                <li>Access your dashboard and manage your profile</li>
+            </ul>
+            
+            <p>If you have any questions or need assistance, please don't hesitate to contact our support team.</p>
+            
+            <p>Best regards,<br>The CV Generator Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>CV Generator - Create Professional CVs Easily</p>
+            <p>If you're having trouble with the verification link, copy and paste the following URL into your web browser:</p>
+            <p style="word-break: break-all; color: #3498db;" th:text="${verificationUrl}">
+                http://localhost:9102/verify?token=ABC123
+            </p>
+        </div>
+    </div>
+</body>
+</html>

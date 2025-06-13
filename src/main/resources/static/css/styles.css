@@ -1,0 +1,135 @@
+/* Main styles for CV Generator application */
+
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9fafb;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    flex: 1;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    min-height: calc(100vh - 56px - 62px);
+    background-color: #f8f9fa;
+    padding-top: 20px;
+}
+
+.sidebar .nav-link {
+    color: #495057;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    margin: 0.2rem 0;
+    transition: all 0.2s;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #eaecef;
+}
+
+.sidebar .nav-link.active {
+    color: #007bff;
+    background-color: #e9ecef;
+    font-weight: 600;
+}
+
+.sidebar-heading {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-weight: 600;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #4361ee;
+    border-color: #4361ee;
+}
+
+.btn-primary:hover {
+    background-color: #3a56d4;
+    border-color: #3a56d4;
+}
+
+.btn-outline-primary {
+    color: #4361ee;
+    border-color: #4361ee;
+}
+
+.btn-outline-primary:hover {
+    background-color: #4361ee;
+    border-color: #4361ee;
+}
+
+/* Footer */
+.footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
+/* Animation for page transitions */
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* CV Templates */
+.template-card {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.template-card:hover {
+    transform: translateY(-5px);
+}
+
+.template-card.selected {
+    border-color: #4361ee;
+}
+
+/* CV Preview */
+.cv-preview {
+    background-color: white;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+}
+
+/* Dashboard stats */
+.stats-card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+}

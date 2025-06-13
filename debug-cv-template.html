@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>CV PDF</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+        
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .cv-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c3e50;
+            display: table;
+            width: 100%;
+        }
+        
+        .header-content {
+            display: table-cell;
+            vertical-align: top;
+            width: 70%;
+        }
+        
+        .header-image {
+            display: table-cell;
+            vertical-align: top;
+            width: 30%;
+            text-align: right;
+        }
+        
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+        
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0 0 5px 0;
+        }
+        
+        .title {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin: 0 0 15px 0;
+            font-style: italic;
+        }
+        
+        .contact-info {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .contact-info div {
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+        
+        .item-header {
+            margin-bottom: 5px;
+        }
+        
+        .item-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+        
+        .item-company {
+            font-size: 14px;
+            color: #3498db;
+            margin-bottom: 3px;
+        }
+        
+        .item-date {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .item-location {
+            font-size: 12px;
+            color: #95a5a6;
+            margin-bottom: 8px;
+        }
+        
+        .item-description {
+            font-size: 14px;
+            color: #555;
+            text-align: justify;
+        }
+        
+        .skills-container {
+            display: block;
+        }
+        
+        .skill-item {
+            color: black;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-block;
+            margin: 2px;
+        }
+        
+        .summary {
+            font-size: 14px;
+            color: #555;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+        
+        .no-image .header-content {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="cv-header no-image">
+        <div class="header-content">
+            <h1 class="name">
+                <span>aaaaaa</span> 
+                <span>aaaaa</span>
+            </h1>
+            <div class="title">aaa</div>
+            
+            <div class="contact-info">
+                <div>
+                    <strong>Email:</strong> <span>aaa@a.com</span>
+                </div>
+                <div>
+                    <strong>Phone:</strong> <span>122222</span>
+                </div>
+                <div>
+                    <strong>Address:</strong> <span>aaaa</span>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+
+    <!-- Professional Summary -->
+    <div class="section">
+        <h2 class="section-title">Professional Summary</h2>
+        <div class="summary">sqdqsddqsd</div>
+    </div>
+
+    <!-- Work Experience -->
+    <div class="section">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="experience-item">
+            <div class="item-header">
+                <div class="item-title">aa</div>
+                <div class="item-company">aa</div>
+                <div class="item-date">
+                    <span>Jun 2025</span>
+                    
+                    
+                    <span> - Present</span>
+                </div>
+                <div class="item-location">aaa</div>
+            </div>
+            <div class="item-description">aaa</div>
+        </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-item">
+            <div class="item-header">
+                <div class="item-title">aaa</div>
+                <div class="item-company">qssqsq</div>
+                <div class="item-date">
+                    <span>Jun 2025</span>
+                    <span> - </span>
+                    <span>Jun 2025</span>
+                </div>
+            </div>
+            <div class="item-description">dfghjk</div>
+        </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+            <div class="skill-item skill-advanced">
+                <span>qsqsqs</span><span> (Advanced)</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

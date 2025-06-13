@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Created Successfully - CV Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .title {
+            font-size: 24px;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+        .content {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .cv-info {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        .button {
+            display: inline-block;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+        }
+        .download-btn {
+            background-color: #e74c3c;
+        }
+        .view-btn {
+            background-color: #3498db;
+        }
+        .footer {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 40px;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 20px;
+        }
+        .success-icon {
+            font-size: 48px;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">CV Generator</div>
+            <div class="success-icon">✅</div>
+            <h1 class="title">Your CV Has Been Created!</h1>
+        </div>
+        
+        <div class="content">
+            <p>Hello <strong th:text="${firstName}">User</strong>,</p>
+            
+            <p>Great news! Your CV has been successfully created and is ready for download.</p>
+            
+            <div class="cv-info">
+                <h3 style="margin-top: 0; color: #2c3e50;">CV Details:</h3>
+                <p><strong>Title:</strong> <span th:text="${cvTitle}">My Professional CV</span></p>
+                <p><strong>Created:</strong> <span th:text="${#temporals.format(#temporals.createNow(), 'MMMM dd, yyyy HH:mm')}">Today</span></p>
+                <p><strong>Status:</strong> Ready for download</p>
+            </div>
+            
+            <p>You can now:</p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a th:href="${downloadUrl}" class="button download-btn">📄 Download PDF</a>
+                <a th:href="${viewUrl}" class="button view-btn">👁️ View CV</a>
+            </div>
+            
+            <h3 style="color: #2c3e50;">What's Next?</h3>
+            <ul>
+                <li><strong>Download your CV:</strong> Click the download button above to get your CV as a PDF file</li>
+                <li><strong>Review and edit:</strong> You can always go back and make changes to your CV</li>
+                <li><strong>Create more versions:</strong> Consider creating different versions for different job applications</li>
+                <li><strong>Keep it updated:</strong> Remember to update your CV as you gain new experiences</li>
+            </ul>
+            
+            <p>Your CV is saved in your dashboard where you can access it anytime. You can create multiple CV versions and customize them for different job applications.</p>
+            
+            <p>If you need to make any changes or have questions about your CV, simply log in to your account and navigate to your dashboard.</p>
+            
+            <p>Best of luck with your job applications!</p>
+            
+            <p>Best regards,<br>The CV Generator Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>This email was sent because you created a CV on our platform.</p>
+            <p>CV Generator - Create Professional CVs Easily</p>
+            <p><strong>Direct Links:</strong></p>
+            <p>Download: <a th:href="${downloadUrl}" style="color: #3498db;" th:text="${downloadUrl}">Download Link</a></p>
+            <p>View: <a th:href="${viewUrl}" style="color: #3498db;" th:text="${viewUrl}">View Link</a></p>
+        </div>
+    </div>
+</body>
+</body>
+</html>

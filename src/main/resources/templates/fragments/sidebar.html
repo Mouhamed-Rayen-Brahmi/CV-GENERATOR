@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="sidebar" th:fragment="sidebar">
+    <div class="sidebar-content">
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <a class="sidebar-link" th:href="@{/dashboard}" th:classappend="${#httpServletRequest.getRequestURI() == '/dashboard' ? 'active' : ''}">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" th:href="@{/cv/create}" th:classappend="${#httpServletRequest.getRequestURI() == '/cv/create' ? 'active' : ''}">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Create New CV</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" th:href="@{/templates}" th:classappend="${#httpServletRequest.getRequestURI() == '/templates' ? 'active' : ''}">
+                    <i class="fas fa-layer-group"></i>
+                    <span>CV Templates</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" th:href="@{/profile}" th:classappend="${#httpServletRequest.getRequestURI() == '/profile' ? 'active' : ''}">
+                    <i class="fas fa-user"></i>
+                    <span>My Profile</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" th:href="@{/settings}" th:classappend="${#httpServletRequest.getRequestURI() == '/settings' ? 'active' : ''}">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-section">
+            <h4 class="sidebar-heading">Saved CVs</h4>
+            <ul class="sidebar-menu" id="recentCvsList">
+                <!-- This will be populated dynamically with JavaScript -->
+                <li class="sidebar-item sidebar-loader">
+                    <div class="spinner">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

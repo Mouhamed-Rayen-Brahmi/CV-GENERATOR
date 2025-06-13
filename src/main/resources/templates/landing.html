@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Generator - Create Professional Resumes</title>
+    <link rel="stylesheet" th:href="@{/css/landing.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+<!-- Navigation Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <a href="/"><h1>CV Generator</h1></a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="/login" class="btn btn-outline">Log In</a></li>
+                <li><a href="/register" class="btn btn-primary">Sign Up</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Create Professional CVs in Minutes</h1>
+            <p>Our easy-to-use CV generator helps you build impressive resumes that get noticed by employers.</p>
+            <div class="cta-buttons">
+                <a href="/register" class="btn btn-large btn-primary">Get Started Free</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img th:src="@{/images/hero-cv.png}" alt="CV Generator Preview">
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features">
+    <div class="container">
+        <h2 class="section-title">Why Choose Our CV Generator</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h3>Easy to Use</h3>
+                <p>Intuitive interface that guides you through every step of creating your professional CV</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Professional Template</h3>
+                <p>Use our professionally designed template for any industry</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <h3>PDF Export</h3>
+                <p>Download your CV in PDF format, ready to send to employers</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Cloud Storage</h3>
+                <p>Save and access your CVs anytime from anywhere</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="how-it-works">
+    <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Create an Account</h3>
+                <p>Sign up in seconds, no credit card required</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Fill Your Details</h3>
+                <p>Enter your information with our easy-to-use form</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Preview Your CV</h3>
+                <p>See how your professional CV looks</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Download & Share</h3>
+                <p>Get your CV as PDF ready to send to employers</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="container">
+        <h2>Ready to Create Your Professional CV?</h2>
+        <p>Join thousands of job seekers who have successfully landed their dream jobs with our CV Generator.</p>
+        <a href="/register" class="btn btn-large btn-primary">Get Started For Free</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>CV Generator</h3>
+                <p>Create professional CVs in minutes with our easy-to-use online CV generator.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CV Generator. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script th:src="@{/js/landing.js}"></script>
+</body>
+</html>
